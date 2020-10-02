@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {INote, Note} from './note-model';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,18 +16,18 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
+      this.form = this.fb.group({
       title: ['', Validators.required],
       text: ['', Validators.required]
     });
-    this.notes = [new Note(1, 'Название1', 'Текст1'), new Note(2, 'Lel', 'EKE')];
+      this.notes = [new Note(1, 'Название заметки1', 'Текст заметки1'), new Note(2, 'Название заметки2', 'Текст заметки1')];
   }
 
   private createFromForm(): INote {
     return {
       ...new Note(),
       id: null,
-      tittle: this.form.get(['title']).value,
+      title: this.form.get(['title']).value,
       text: this.form.get(['text']).value
     };
   }
@@ -39,6 +38,13 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   deleteNote(id: number): void {
-    this.notes = this.notes.splice(this.notes.findIndex(value => value.id === id), 1);
+    this.notes.splice(this.notes.findIndex(value => value.id === id), 1);
   }
+
+  update(id: number, title: string, text: string): void {
+    const iNote = this.notes.find(value => value.id === id);
+    iNote.title = title;
+    iNote.text = text;
+  }
+
 }

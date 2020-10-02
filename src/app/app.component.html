@@ -18,11 +18,37 @@
   <h3>Здесь все ваши заметки:</h3>
   <div class="list-group" *ngFor="let note of notes" style="min-width: 600px">
     <li class="list-group-item list-group-item-action flex-column align-items-start">
-      <h3>{{note.tittle}}</h3>
-      <p >{{note.text}}</p>
-      <button (click)="deleteNote(note.id)">X</button>
+      <div data-toggle="modal" data-target="#exampleModalCenter2">
+        <h3>{{note.title}}</h3>
+        <p>{{note.text}}</p>
+        <div align="right">
+          <button (click)="deleteNote(note.id)">X</button>
+        </div>
+      </div>
     </li>
+    <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <form name="form" role="form" novalidate (ngSubmit)="update(note.id, note.title, note.text)" [formGroup]="form">
+            <div class="modal-header">
+              <textarea class="form-control" rows="1" name="text" formControlName="title"
+                        placeholder="{{note.title}}"></textarea>
+            </div>
+            <div class="modal-body">
+              <textarea class="form-control" rows="3" name="text" formControlName="text"
+                        required="" placeholder="{{note.text}}"></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Обновить</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
+
 
   <footer>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">

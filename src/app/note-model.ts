@@ -1,14 +1,14 @@
 
 export interface INote {
   id?: number;
-  tittle?: string;
+  title?: string;
   text?: string;
 }
 
 export class Note implements INote {
   constructor(
     public id?: number,
-    public tittle?: string,
+    public title?: string,
     public text?: string,
   ) {}
 }
