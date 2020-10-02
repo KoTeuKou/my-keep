@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "my-keep"
+    }
+  },
+  "defaultProject": "my-keep",
+  "cli": {
+    "analytics": "af6d1814-029b-4283-bdb7-abbfc46e3cd0"
+  }
 }
