@@ -31,11 +31,7 @@ app.post('/api/add', (req, res) => {
       text: req.body.text
     })
     newNote.save()
-      .then(note => res.send({
-        id: note._id,
-        title: note.title,
-        text: note.text
-      }))
+      .then(note => res.send(note._id))
   });
 })
 

@@ -44,11 +44,15 @@ export class AppComponent implements OnInit, OnDestroy{
     this.httpClient.post<number>('/api/add', {
       title: iNote.title,
       text: iNote.text
-    }).subscribe(value => iNote.id = value);
+    }).subscribe(value => {
+      console.log(value);
+      iNote.id = value; });
     this.notes.push(iNote);
   }
 
-  deleteNote(id: number): void {
+  deleteNote(): void {
+    const updatingNote = this.createFromForm();
+    const id = updatingNote.id;
     const index = this.notes.findIndex(value => value.id === id);
     this.notes.splice(index, 1);
     this.httpClient.delete('/api/delete/' + id).subscribe(() => {});

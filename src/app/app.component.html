@@ -18,11 +18,30 @@
         <pre class="note-text">{{note.text}}</pre>
       </div>
       <div align="right">
-        <button class="trashcan-btn" (click)="deleteNote(note.id)">
+        <button class="trashcan-btn" data-toggle="modal" data-target="#deleteModal" (click)="fillForm(note)">
           <img class="trashcan-img" src="https://cdn.icon-icons.com/icons2/692/PNG/512/seo-social-web-network-internet_262_icon-icons.com_61518.png">
         </button>
       </div>
     </li>
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal{{note.id}}" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" >Подтверждение удаления</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Вы уверены что хотите удалить заметку?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет, отменить</button>
+            <button type="button" class="btn btn-primary" (click)="deleteNote()" data-dismiss="modal">Да, удалить</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="modal fade" id="modalUpdating" tabindex="-1" role="dialog"
          aria-labelledby="modalUpdatingTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
