@@ -90,3 +90,7 @@ footer a {
   border-width: 1px;
   border-color: #888888;
 }
+
+.note-text {
+  font-size: 16px;
+}
